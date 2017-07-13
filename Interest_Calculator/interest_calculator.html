@@ -1,0 +1,113 @@
+<HTML>
+
+
+<HEAD>
+<TITLE>
+INTEREST CALCULATOR
+</TITLE>
+<STYLE>
+body {
+border: 5px solid pink;
+}
+
+
+</STYLE>
+</HEAD>
+
+
+<BODY>
+
+
+<h1 align="center" style="color:blue;">
+Interest Calculator
+</h1>
+	
+<div id ="content" align="center">
+	<div class="image1">
+	<img src="simple-and-compound-interest.gif" alt="Mountain View" style="width:304px;height:228px;">
+	</div>
+<br>
+
+<div class ="calculator">
+	<form>
+	<H2>
+	Principle:<input type ="text" name ="principle" id ="p"> 
+	<br>
+	Rate:<input type ="text" name ="rate" id ="r"> 
+	<br>
+	Period:<input type ="text" name ="years" id="n"> 
+	<br>
+	</H2>
+	<input type ="radio" id="s" name="interest_type" value="simple" checked> Simple Interest </input>
+	<input type ="radio" id="c" name="interest_type" value="compound"> Compound Interest </input>
+	<br>
+	<br>
+	<button type="button" onclick ="calculate()"> Calculate </button>
+	<br>
+	<p id="myInterest"></p>
+	<p id="Amount"></p>
+
+	</form>
+</div>
+
+
+<div class ="table">
+	<table border="1" id="results">
+	<tr>
+	<th>#</th>
+	<th> Interest </th>
+	<th> Amount </th>
+	</tr>
+
+	</table>
+
+</div>
+</div>
+
+<script>
+
+var rowCounter =0;
+function calculate(){
+	rowCounter++;
+	var p,n,r,t,i,a;
+	
+	p= document.getElementById("p").value;
+	n= document.getElementById("n").value;
+	r= document.getElementById("r").value;
+	if(document.getElementById("s").checked){
+		i = (p*n*r)/100;
+	}
+	else{
+		i = (p*(Math.pow((1+(r/100)),n)))-p;
+	}
+	
+	a= parseFloat(p) + parseFloat(i);
+	
+
+
+	var table = document.getElementById('results');
+	var row = document.createElement('tr');
+	var td1 = document.createElement('td');
+	var td2 = document.createElement('td');
+	var td3 = document.createElement('td');
+	td1.innerHTML = rowCounter;
+	td2.innerHTML = i;
+	td3.innerHTML = a;
+	row.appendChild(td1);
+	row.appendChild(td2);
+	row.appendChild(td3);
+	table.children[0].appendChild(row);
+
+}
+
+</script>
+
+
+
+
+
+
+
+</BODY>
+</HTML>
+
