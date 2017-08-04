@@ -1,0 +1,87 @@
+<html>
+<head>
+
+</head>
+<body>
+
+ <input type="text" id="cash" onChange="convert_cash()"> $
+ <br>
+ <br>
+<input type="text" id="amount_string"> only
+
+
+
+<script>
+
+var result = document.getElementById("amount_string").value;
+
+var units =["zero", "one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"];
+var tens =["","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"];
+
+function hundreds() {
+	var amount = document.getElementById("cash").value ;
+	var r="";
+	if(amount/100 >= 1){
+		var i = Math.trunc(amount/100);
+		if(i>0){
+			r = units[i] + " hundred";
+		}
+		if(amount%100> 0){
+			r = r +" and ";
+		}	
+	}
+	
+	return r;
+
+}
+
+function tenths(){
+	var amount1 = document.getElementById("cash").value ;
+	var i = amount1%100;
+	var t="";
+	if(i>9){
+		if(i>19){
+			var p = Math.trunc(i/10);
+			 t = tens[p];
+		}
+		else{
+			 t = units[i];
+		}
+	}
+	return t;
+}
+
+
+function units1(){
+	var amount1 = document.getElementById("cash").value ;
+	var u ="";
+	var oneth = amount1%10;
+	var tenth =amount1%100;
+	if(tenth <10 || tenth >19 ){
+		if(oneth>0){
+			u = units[oneth];
+		}
+	}
+	return u; 
+}
+
+
+
+function convert_cash(){
+
+//result = find_hundredth();
+var h = hundreds();
+var t = tenths();
+var x = units1();
+
+var result = h + t +" "+ x ;
+
+document.getElementById("amount_string").value= result;
+
+}
+
+
+</script>
+
+</body>
+</html>
